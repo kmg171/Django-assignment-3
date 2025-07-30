@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ blog.title }}</title>
+</head>
+<body>
+    <h1>{{ blog.title }}</h1>
+    <p>{{ blog.content }}</p>
+    <small>작성일: {{ blog.created_at|date:"Y-m-d" }}</small>
+    <br />
+    <a href="{% url 'blog_list' %}">목록으로 돌아가기</a>
+</body>
+</html>

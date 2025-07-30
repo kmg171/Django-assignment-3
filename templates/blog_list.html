@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>블로그 목록</title>
+</head>
+<body>
+    <nav>
+        <div style="text-align: right">
+            {% if request.user.is_authenticated %}
+                <form action="{% url 'logout' %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">로그아웃</button>
+                </form>
+                {{ request.user.username }}님
+            {% else %}
+                <a href="{% url 'login' %}">로그인</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <h1>블로그 목록</h1>
+    {% for blog in blogs %}
+        <div>
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.content|truncatewords:30 }}</p>
+        </div>
+    {% empty %}
+        <p>게시글이 없습니다.</p>
+    {% endfor %}
+</body>
+</html>
